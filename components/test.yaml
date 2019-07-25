@@ -1,0 +1,9 @@
+name: PWD
+
+cmd:
+  - start: |
+      ros_env
+      stdbuf -oL -eL pwd && ls
+
+host: ${basepc}
+

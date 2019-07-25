@@ -1,0 +1,19 @@
+name: webcam_grab
+
+cmd:
+  - start: |
+      ros_env
+      stdbuf -oL -eL rosrun usb_cam usb_cam_node
+  - check: |
+      source ${prefix}/setup.bash
+      rosnode list | grep /usb_cam
+  
+wait: 2
+
+provides:
+  - webcam
+
+requires:
+  - roscore
+host: ${basepc}
+

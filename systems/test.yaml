@@ -1,0 +1,11 @@
+name: WTF
+
+groups:
+  - name: STUFF
+    components:
+      - name: roscore
+      - start: ros_env && stdbuf -oL -eL roscore
+      - provides: roscore
+      - host: ${basepc}
+
+env: env/study_env.sh

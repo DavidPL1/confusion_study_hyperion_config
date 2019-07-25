@@ -1,0 +1,7 @@
+name: Data
+
+components:
+  - !include ../roscore.yaml
+  - !include ../eye_tracker.yaml
+  - !include ../screen_grab.yaml
+  - !include ../webcam.yaml

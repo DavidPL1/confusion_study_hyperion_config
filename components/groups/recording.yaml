@@ -1,0 +1,6 @@
+name: Recording STUFF
+
+components:
+  - !include ../record.yaml
+  - !include ../test.yaml
+

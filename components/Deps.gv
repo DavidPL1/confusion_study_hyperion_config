@@ -1,0 +1,17 @@
+strict digraph Deps {
+	graph [newrank=true outputorder=edgesfirst rankdir=RL splines=polyline]
+	subgraph cluster_cheetah {
+		graph [color=lightgrey label=cheetah style=filled]
+		node [color=white style=filled]
+		"roscore@cheetah" [label=<roscore<BR /><FONT POINT-SIZE="8" color="darkgreen">cheetah</FONT>> color=white shape=box style=filled]
+		"screen_grab@cheetah" [label=<screen_grab<BR /><FONT POINT-SIZE="8" color="darkgreen">cheetah</FONT>> color=white shape=box style=filled]
+		"screen_grab@cheetah" -> "roscore@cheetah"
+		"eye_tracker@cheetah" [label=<eye_tracker<BR /><FONT POINT-SIZE="8" color="darkgreen">cheetah</FONT>> color=white shape=box style=filled]
+		"eye_tracker@cheetah" -> "roscore@cheetah"
+		"rosbag@cheetah" [label=<rosbag<BR /><FONT POINT-SIZE="8" color="darkgreen">cheetah</FONT>> color=white shape=box style=filled]
+		"rosbag@cheetah" -> "screen_grab@cheetah"
+		"rosbag@cheetah" -> "eye_tracker@cheetah"
+		"webcam_grab@cheetah" [label=<webcam_grab<BR /><FONT POINT-SIZE="8" color="darkgreen">cheetah</FONT>> color=white shape=box style=filled]
+		"webcam_grab@cheetah" -> "roscore@cheetah"
+	}
+}

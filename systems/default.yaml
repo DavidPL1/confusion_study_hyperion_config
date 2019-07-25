@@ -1,0 +1,11 @@
+name: Confusion-Study
+
+groups:
+  - !include ../components/groups/recording.yaml
+  - !include ../components/groups/data.yaml
+
+exclude:
+ - none
+
+verbose_checks: True
+env: env/study_env.sh

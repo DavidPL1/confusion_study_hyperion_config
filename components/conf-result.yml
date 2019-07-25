@@ -1,0 +1,90 @@
+env: env/study_env.sh
+exclude:
+- none
+groups:
+- components:
+  - cmd:
+    - start: 'ros_env
+
+        stdbuf -oL -eL rosbag record -o screen screen_grab gaze_point
+
+        '
+    host: ${basepc}
+    name: rosbag
+    provides:
+    - recording
+    requires:
+    - roscore
+    - screen_grab
+    - eye_tracking
+  - cmd:
+    - start: 'ros_env
+
+        stdbuf -oL -eL pwd && ls
+
+        '
+    host: ${basepc}
+    name: PWD
+  name: Recording STUFF
+- components:
+  - cmd:
+    - start: 'ros_env
+
+        stdbuf -oL -eL roscore
+
+        '
+    - check: "source ${prefix}/setup.bash\nrosnode list | grep /rosout \n"
+    host: ${basepc}
+    name: roscore
+    provides:
+    - roscore
+    - base_system
+    wait: 2
+  - cmd:
+    - start: 'ros_env
+
+        stdbuf -oL -eL rosrun eye_grab eye_grab_node
+
+        '
+    host: ${basepc}
+    name: eye_tracker
+    provides:
+    - eye_tracking
+    requires:
+    - roscore
+    tags:
+    - eye_tracking
+    - gaze
+  - cmd:
+    - start: 'ros_env
+
+        stdbuf -oL -eL roslaunch screen_grab screen_grab.launch
+
+        '
+    host: ${basepc}
+    name: screen_grab
+    provides:
+    - screen_grab
+    requires:
+    - roscore
+  - cmd:
+    - start: 'ros_env
+
+        stdbuf -oL -eL rosrun usb_cam usb_cam_node
+
+        '
+    - check: 'source ${prefix}/setup.bash
+
+        rosnode list | grep /usb_cam
+
+        '
+    host: ${basepc}
+    name: webcam_grab
+    provides:
+    - webcam
+    requires:
+    - roscore
+    wait: 2
+  name: Data
+name: Confusion-Study
+verbose_checks: true

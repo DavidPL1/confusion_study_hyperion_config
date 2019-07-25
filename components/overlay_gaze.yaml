@@ -1,0 +1,18 @@
+name: eye_tracker
+
+cmd:
+  - start: |
+      ros_env
+      stdbuf -oL -eL rosrun overlay_gaze gaze_overlay_node
+
+tags:
+  - eye_tracking
+  - gaze
+
+provides:
+  - eye_tracking
+
+requires:
+  - roscore
+host: ${basepc}
+

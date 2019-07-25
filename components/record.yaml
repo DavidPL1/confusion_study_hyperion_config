@@ -1,0 +1,20 @@
+name: rosbag
+
+cmd:
+  - start: |
+      ros_env
+      stdbuf -oL -eL rosbag record -j -o screen screen_grab gaze_point /usb_cam/image_raw __name:=record_bag
+  - stop: |
+      source ${prefix}/setup.bash
+      rosnode kill /record_bag
+
+provides:
+  - recording
+
+requires:
+  - roscore
+  - screen_grab
+  - eye_tracking
+
+host: ${basepc}
+

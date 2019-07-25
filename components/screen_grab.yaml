@@ -1,0 +1,18 @@
+name: screen_grab
+
+cmd:
+  - start: |
+      ros_env
+      stdbuf -oL -eL roslaunch screen_grab screen_grab.launch
+  - check: |
+      source ${prefix}/setup.bash
+      rosnode list | grep /screen_grab
+  
+provides:
+  - screen_grab
+
+requires:
+  - roscore
+
+host: ${basepc}
+
